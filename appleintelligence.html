@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apple Intelligence (Powered by ChatGPT)</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Apple Intelligence</h1>
+  </header>
+
+  <main class="p-6 space-y-10">
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Enter Text or Prompt</h2>
+      <textarea id="userInput" placeholder="Paste your text or prompt here..." class="w-full p-4 rounded border mb-4"></textarea>
+      <div class="text-sm text-gray-500 mb-2">Output:</div>
+      <pre id="responseOutput" class="bg-white p-4 rounded border min-h-[100px]"></pre>
+    </section>
+
+    <!-- Writing Tools -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Writing Tools</h2>
+      <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
+        <button onclick="sendToOpenAI('Proofread the following text:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Proofread</button>
+
+        <!-- Rewrite Dropdown -->
+        <details class="bg-blue-100 p-3 rounded-lg shadow col-span-1">
+          <summary class="cursor-pointer font-semibold text-blue-700">Rewrite</summary>
+          <div class="mt-2 grid grid-cols-2 gap-2">
+            <button onclick="sendToOpenAI('Make the specified change to this text:')" class="bg-blue-500 text-white p-2 rounded">Describe your change</button>
+            <button onclick="sendToOpenAI('Rewrite this text in a friendly tone:')" class="bg-blue-500 text-white p-2 rounded">Friendly</button>
+            <button onclick="sendToOpenAI('Rewrite this text in a professional tone:')" class="bg-blue-500 text-white p-2 rounded">Professional</button>
+            <button onclick="sendToOpenAI('Rewrite this text to be more concise:')" class="bg-blue-500 text-white p-2 rounded">Concise</button>
+          </div>
+        </details>
+
+        <!-- Summarise Dropdown -->
+        <details class="bg-blue-100 p-3 rounded-lg shadow col-span-1">
+          <summary class="cursor-pointer font-semibold text-blue-700">Summarise</summary>
+          <div class="mt-2 grid grid-cols-2 gap-2">
+            <button onclick="sendToOpenAI('Provide a summary of this text:')" class="bg-blue-500 text-white p-2 rounded">Summary</button>
+            <button onclick="sendToOpenAI('Extract the key points from this text:')" class="bg-blue-500 text-white p-2 rounded">Key Points</button>
+            <button onclick="sendToOpenAI('Convert this text into a table format:')" class="bg-blue-500 text-white p-2 rounded">Table</button>
+            <button onclick="sendToOpenAI('List out the key elements from this text:')" class="bg-blue-500 text-white p-2 rounded">List</button>
+          </div>
+        </details>
+
+        <button onclick="sendToOpenAI('Compose a new message based on this:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Compose</button>
+      </div>
+    </section>
+
+    <!-- Messages Tools -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Messages</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <button onclick="sendToOpenAI('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Messages</button>
+        <button onclick="sendToOpenAI('Provide a smart reply to this message:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
+      </div>
+    </section>
+
+    <!-- ChatGPT Access -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">ChatGPT</h2>
+      <button onclick="sendToOpenAI('')" class="bg-purple-500 text-white p-3 rounded-lg shadow">Chat with ChatGPT</button>
+    </section>
+
+    <!-- Audio Summaries -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Audio Summaries</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <button onclick="sendToOpenAI('Summarise this phone call:')" class="bg-yellow-500 text-white p-3 rounded-lg shadow">Summarise Phone Call</button>
+        <button onclick="sendToOpenAI('Summarise this audio recording:')" class="bg-yellow-500 text-white p-3 rounded-lg shadow">Summarise Audio Recording</button>
+      </div>
+    </section>
+
+    <!-- Webpage Summaries -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Webpage Summaries</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <button onclick="sendToOpenAI('Summarise the content of this webpage:')" class="bg-yellow-500 text-white p-3 rounded-lg shadow">Summarise Webpage</button>
+      </div>
+    </section>
+
+    <!-- Image Playground -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Image Playground</h2>
+      <div class="grid grid-cols-3 gap-4">
+        <button onclick="sendToOpenAI('Generate an animation style image of:')" class="bg-pink-500 text-white p-3 rounded-lg shadow">Animation</button>
+        <button onclick="sendToOpenAI('Generate an illustration of:')" class="bg-pink-500 text-white p-3 rounded-lg shadow">Illustration</button>
+        <button onclick="sendToOpenAI('Generate a sketch of:')" class="bg-pink-500 text-white p-3 rounded-lg shadow">Sketch</button>
+      </div>
+    </section>
+
+    <!-- Genmoji -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Genmoji</h2>
+      <button onclick="sendToOpenAI('Generate an emoji based on this prompt using Open Genmoji guidelines:')" class="bg-indigo-500 text-white p-3 rounded-lg shadow">Generate Emoji</button>
+    </section>
+
+    <!-- Visual Intelligence -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Visual Intelligence</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <button onclick="sendToOpenAI('Ask a question based on visual input:')" class="bg-red-500 text-white p-3 rounded-lg shadow">Ask</button>
+        <button onclick="sendToOpenAI('Search based on the following content:')" class="bg-red-500 text-white p-3 rounded-lg shadow">Search</button>
+        <button onclick="sendToOpenAI('Provide information about this place:')" class="bg-red-500 text-white p-3 rounded-lg shadow">Place</button>
+        <details class="bg-red-100 p-3 rounded-lg shadow col-span-3">
+          <summary class="cursor-pointer font-semibold text-red-700">Text Tools</summary>
+          <div class="mt-2 grid grid-cols-2 gap-2">
+            <button onclick="sendToOpenAI('Summarise this text:')" class="bg-red-500 text-white p-2 rounded">Summarise</button>
+            <button onclick="sendToOpenAI('Translate this text:')" class="bg-red-500 text-white p-2 rounded">Translate</button>
+            <button onclick="sendToOpenAI('Read aloud this text:')" class="bg-red-500 text-white p-2 rounded">Read Aloud</button>
+            <button onclick="sendToOpenAI('Identify phone number, email address, date, and website from this text:')" class="bg-red-500 text-white p-2 rounded">Identify Info</button>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center text-gray-500 text-sm mt-10 mb-4">
+    © 2025 Dan Nguyen | Powered by ChatGPT
+  </footer>
+
+  <script src="https://js.puter.com/v2/"></script>
+  <script>
+    puter.ai.chat("What are the benefits of exercise?")
+            .then(response => {
+                puter.print(response);
+            });
+  </script>
+</body>
+</html>
