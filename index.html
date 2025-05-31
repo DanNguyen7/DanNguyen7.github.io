@@ -125,10 +125,13 @@
 
   <script src="https://js.puter.com/v2/"></script>
   <script>
-    puter.ai.chat("What are the benefits of exercise?")
-            .then(response => {
-                puter.print(response);
-            });
+    function sendToOpenAI(prompt) {
+      const input = document.getElementById('userInput').value;
+      const fullPrompt = `${prompt}\n${input}`;
+              .then(response => {
+                  puter.print(fullPrompt);
+              });
+    }
   </script>
 </body>
 </html>
