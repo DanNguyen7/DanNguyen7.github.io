@@ -12,8 +12,8 @@
       const fullPrompt = `${prompt}\n${input}`;
       puter.ai.chat(fullPrompt)
               .then(response => {
-                  puter.print(response);
-              });
+                  document.getElementById('responseOutput').textContent = response
+              }); 
     }
   </script>
 </head>
