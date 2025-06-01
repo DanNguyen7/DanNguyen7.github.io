@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Apple Intelligence (Powered by ChatGPT)</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://js.puter.com/v2/"></script>
+  <script>
+    function sendToOpenAI(prompt) {
+      const input = document.getElementById('userInput').value;
+      const fullPrompt = `${prompt}\n${input}`;
+              .then(response => {
+                  puter.print(fullPrompt);
+              });
+    }
+  </script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
   <header class="bg-white shadow p-4 flex justify-between items-center">
@@ -122,16 +132,5 @@
   <footer class="text-center text-gray-500 text-sm mt-10 mb-4">
     © 2025 Dan Nguyen | Powered by ChatGPT
   </footer>
-
-  <script src="https://js.puter.com/v2/"></script>
-  <script>
-    function sendToOpenAI(prompt) {
-      const input = document.getElementById('userInput').value;
-      const fullPrompt = `${prompt}\n${input}`;
-              .then(response => {
-                  puter.print(fullPrompt);
-              });
-    }
-  </script>
 </body>
 </html>
