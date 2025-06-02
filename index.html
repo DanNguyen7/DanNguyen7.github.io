@@ -103,7 +103,6 @@
     <section>
       <h2 class="text-xl font-semibold mb-4">Image Upload</h2>
       <input type="file" id="imageInputMailandMessages" accept="image/*" class="mb-4">
-      <button onclick="MessagesandMail()" class="bg-indigo-500 text-white p-3 rounded-lg shadow">Upload Image</button>
       <div class="text-sm text-gray-500 mb-2">Output:</div>
       <pre id="responseOutputMailandMessages" class="bg-white p-4 rounded border min-h-[100px]"></pre>
     </section>
@@ -119,9 +118,9 @@
 
     <!-- Mail Tools -->
     <section>
-      <h2 class="text-xl font-semibold mb-4">Messages</h2>
+      <h2 class="text-xl font-semibold mb-4">Mail</h2>
       <div class="grid grid-cols-2 gap-4">
-        <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Messages</button>
+        <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Mail</button>
         <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
       </div>
     </section>
