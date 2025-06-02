@@ -101,7 +101,8 @@
     
     <!-- Messages and Mail Image Input and Text Output -->
     <section>
-      <h2 class="text-xl font-semibold mb-4">Image Upload</h2>
+      <h2 class="text-xl font-semibold mb-4">Messages and Mail</h2>
+      <div class="text-sm text-gray-500 mb-2">Image Upload:</div>
       <input type="file" id="imageInputMailandMessages" accept="image/*" class="mb-4">
       <div class="text-sm text-gray-500 mb-2">Output:</div>
       <pre id="responseOutputMailandMessages" class="bg-white p-4 rounded border min-h-[100px]"></pre>
@@ -109,7 +110,7 @@
 
     <!-- Messages Tools -->
     <section>
-      <h2 class="text-xl font-semibold mb-4">Messages</h2>
+      <h3 class="text-xl font-semibold mb-4">Messages</h2>
       <div class="grid grid-cols-2 gap-4">
         <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Messages</button>
         <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
@@ -118,10 +119,10 @@
 
     <!-- Mail Tools -->
     <section>
-      <h2 class="text-xl font-semibold mb-4">Mail</h2>
+      <h4 class="text-xl font-semibold mb-4">Mail</h2>
       <div class="grid grid-cols-2 gap-4">
-        <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Mail</button>
-        <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
+        <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Summarise Mail</button>
+        <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
       </div>
     </section>
 
