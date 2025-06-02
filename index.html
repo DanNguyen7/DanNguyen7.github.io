@@ -88,6 +88,20 @@
             });
       }
     </script>
+
+  <!-- Audio Summaries Script -->
+  <script src="https://js.puter.com/v2/"></script>
+  <script>
+    function AudioSummaries(prompt) {
+      const input = document.getElementById('userInputAudioSummaries').value;
+      const fullPrompt = `${prompt}\n${input}`;
+      document.getElementById('responseOutputAudioSummaries').textContent = 'Processing...';
+      puter.ai.chat(fullPrompt)
+              .then(response => {
+                  document.getElementById('responseOutputAudioSummaries').textContent = response
+              }); 
+    }
+  </script>
   
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
@@ -182,9 +196,16 @@
     <!-- Audio Summaries -->
     <section>
       <h2 class="text-xl font-semibold mb-4">Audio Summaries</h2>
+      <div class="text-sm text-gray-500 mb-2">Enter Transcript:</div>
+      <textarea id="userInputAudioSummaries" placeholder="Paste your transcript here..." class="w-full p-4 rounded border mb-4"></textarea>
+      <div class="text-sm text-gray-500 mb-2">Output:</div>
+      <pre id="responseOutputAudioSummaries" class="bg-white p-4 rounded border min-h-[100px] overflow-x-auto whitespace-pre-wrap break-words"></pre> 
+    </section>
+    
+    <section>
       <div class="grid grid-cols-2 gap-4">
-        <button onclick="sendToOpenAI('Summarise this phone call:')" class="bg-yellow-500 text-white p-3 rounded-lg shadow">Summarise Phone Call</button>
-        <button onclick="sendToOpenAI('Summarise this audio recording:')" class="bg-yellow-500 text-white p-3 rounded-lg shadow">Summarise Audio Recording</button>
+        <button onclick="AudioSummaries('Summarise this phone call:')" class="bg-yellow-500 text-white p-3 rounded-lg shadow">Summarise Phone Call</button>
+        <button onclick="AudioSummaries('Summarise this audio recording:')" class="bg-yellow-500 text-white p-3 rounded-lg shadow">Summarise Audio Recording</button>
       </div>
     </section>
 
