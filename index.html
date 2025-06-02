@@ -6,6 +6,7 @@
   <title>Apple Intelligence</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
+  <!-- Writing Tools Script -->
   <script src="https://js.puter.com/v2/"></script>
   <script>
     function WritingTools(prompt) {
@@ -52,6 +53,20 @@
     reader.readAsDataURL(file);
     }
   </script> -->
+
+  <!-- ChatGPT -->
+  <script src="https://js.puter.com/v2/"></script>
+  <script>
+    function ChatGPT(prompt) {
+      const input = document.getElementById('userInputChatGPT').value;
+      document.getElementById('responseOutputChatGPT').textContent = 'Processing...';
+      puter.ai.chat(input)
+              .then(response => {
+                  document.getElementById('responseOutputChatGPT').textContent = response
+              }); 
+    }
+  </script>
+  
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
   <header class="bg-white shadow p-4 flex justify-between items-center">
@@ -129,11 +144,18 @@
           </div>
       </details>
     </section>
+
+    <!-- ChatGPT -->
+    <main class="p-6 space-y-10">
+      <section>
+        <h2 class="text-xl font-semibold mb-4">ChatGPT</h2>
+        <textarea id="userInputChatGPT" placeholder="Ask anything" class="w-full p-4 rounded border mb-4"></textarea>
+        <div class="text-sm text-gray-500 mb-2">Output:</div>
+        <pre id="responseOutputChatGPT" class="bg-white p-4 rounded border min-h-[100px] overflow-x-auto whitespace-pre-wrap break-words"></pre> 
+      </section>
     
-    <!-- ChatGPT Access -->
     <section>
-      <h2 class="text-xl font-semibold mb-4">ChatGPT</h2>
-      <button onclick="sendToOpenAI('')" class="bg-purple-500 text-white p-3 rounded-lg shadow">Chat with ChatGPT</button>
+      <button onclick="ChatGPT('')" class="bg-purple-500 text-white p-3 rounded-lg shadow">Chat with ChatGPT</button>
     </section>
 
     <!-- Audio Summaries -->
