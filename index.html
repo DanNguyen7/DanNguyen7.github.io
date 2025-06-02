@@ -7,14 +7,50 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://js.puter.com/v2/"></script>
   <script>
-    function sendToOpenAI(prompt) {
-      const input = document.getElementById('userInput').value;
+    function WritingTools(prompt) {
+      const input = document.getElementById('userInputWritingTools').value;
       const fullPrompt = `${prompt}\n${input}`;
+      document.getElementById('responseOutput').textContent = 'Processing...';
+      puter.ai.chat(fullPrompt)
+              .then(response => {
+                  document.getElementById('responseOutputWritingTools').textContent = response
+              }); 
+    }
+  </script>
+
+  <script src="https://js.puter.com/v2/"></script>
+  
+  <script>
+    function MessagesandMail(prompt) {
+    const input = document.getElementById('imageInputMailandMessages');
+    const output = document.getElementById('textOutputMailandMessages');
+  
+    if (!input.files || input.files.length === 0) {
+      output.textContent = 'Please select an image.';
+      return;
+    }
+
+    const file = input.files[0];
+    const reader = new FileReader();
+  
+    reader.onload = function () {
+      const img = document.createElement('img');
+      img.src = reader.result;
+      img.alt = 'Uploaded Image';
+      img.className = 'mt-4 mx-auto max-w-xs rounded shadow';
+  
+      output.innerHTML = '';
+      output.appendChild(img);
+  
+      const fullPrompt = `${prompt}\n${file}`;
       document.getElementById('responseOutput').textContent = 'Processing...';
       puter.ai.chat(fullPrompt)
               .then(response => {
                   document.getElementById('responseOutput').textContent = response
               }); 
+    }
+      };
+    reader.readAsDataURL(file);
     }
   </script>
 </head>
@@ -23,28 +59,29 @@
     <h1 class="text-2xl font-bold">Apple Intelligence</h1>
   </header>
 
+  <!-- Writing Tools Text Entry and Output -->
   <main class="p-6 space-y-10">
     <section>
       <h2 class="text-xl font-semibold mb-4">Enter Text or Prompt</h2>
-      <textarea id="userInput" placeholder="Paste your text or prompt here..." class="w-full p-4 rounded border mb-4"></textarea>
+      <textarea id="userInputWritingTools" placeholder="Paste your text or prompt here..." class="w-full p-4 rounded border mb-4"></textarea>
       <div class="text-sm text-gray-500 mb-2">Output:</div>
-      <pre id="responseOutput" class="bg-white p-4 rounded border min-h-[100px]"></pre>
+      <pre id="responseOutputWritingTools" class="bg-white p-4 rounded border min-h-[100px]"></pre>
     </section>
 
     <!-- Writing Tools -->
     <section>
       <h2 class="text-xl font-semibold mb-4">Writing Tools</h2>
       <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-        <button onclick="sendToOpenAI('Proofread the following text:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Proofread</button>
+        <button onclick="WritingTools('Proofread the following text:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Proofread</button>
 
         <!-- Rewrite Dropdown -->
         <details class="bg-blue-100 p-3 rounded-lg shadow col-span-1">
           <summary class="cursor-pointer font-semibold text-blue-700">Rewrite</summary>
           <div class="mt-2 grid grid-cols-2 gap-2">
-            <button onclick="sendToOpenAI('Make the specified change to this text:')" class="bg-blue-500 text-white p-2 rounded">Describe your change</button>
-            <button onclick="sendToOpenAI('Rewrite this text in a friendly tone:')" class="bg-blue-500 text-white p-2 rounded">Friendly</button>
-            <button onclick="sendToOpenAI('Rewrite this text in a professional tone:')" class="bg-blue-500 text-white p-2 rounded">Professional</button>
-            <button onclick="sendToOpenAI('Rewrite this text to be more concise:')" class="bg-blue-500 text-white p-2 rounded">Concise</button>
+            <button onclick="WritingTools('Make the specified change to this text:')" class="bg-blue-500 text-white p-2 rounded">Describe your change</button>
+            <button onclick="WritingTools('Rewrite this text in a friendly tone:')" class="bg-blue-500 text-white p-2 rounded">Friendly</button>
+            <button onclick="WritingTools('Rewrite this text in a professional tone:')" class="bg-blue-500 text-white p-2 rounded">Professional</button>
+            <button onclick="WritingTools('Rewrite this text to be more concise:')" class="bg-blue-500 text-white p-2 rounded">Concise</button>
           </div>
         </details>
 
@@ -52,23 +89,41 @@
         <details class="bg-blue-100 p-3 rounded-lg shadow col-span-1">
           <summary class="cursor-pointer font-semibold text-blue-700">Summarise</summary>
           <div class="mt-2 grid grid-cols-2 gap-2">
-            <button onclick="sendToOpenAI('Provide a summary of this text:')" class="bg-blue-500 text-white p-2 rounded">Summary</button>
-            <button onclick="sendToOpenAI('Extract the key points from this text:')" class="bg-blue-500 text-white p-2 rounded">Key Points</button>
-            <button onclick="sendToOpenAI('Convert this text into a table format:')" class="bg-blue-500 text-white p-2 rounded">Table</button>
-            <button onclick="sendToOpenAI('List out the key elements from this text:')" class="bg-blue-500 text-white p-2 rounded">List</button>
+            <button onclick="WritingTools('Provide a summary of this text:')" class="bg-blue-500 text-white p-2 rounded">Summary</button>
+            <button onclick="WritingTools('Extract the key points from this text:')" class="bg-blue-500 text-white p-2 rounded">Key Points</button>
+            <button onclick="WritingTools('Convert this text into a table format:')" class="bg-blue-500 text-white p-2 rounded">Table</button>
+            <button onclick="WritingTools('List out the key elements from this text:')" class="bg-blue-500 text-white p-2 rounded">List</button>
           </div>
         </details>
 
-        <button onclick="sendToOpenAI('Compose a new message based on this:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Compose</button>
+        <button onclick="WritingTools('Compose text based on this prompt:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Compose</button>
       </div>
+    </section>
+    
+    <!-- Messages and Mail Image Input and Text Output -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Image Upload</h2>
+      <input type="file" id="imageInputMailandMessages" accept="image/*" class="mb-4">
+      <button onclick="MessagesandMail()" class="bg-indigo-500 text-white p-3 rounded-lg shadow">Upload Image</button>
+      <div class="text-sm text-gray-500 mb-2">Output:</div>
+      <pre id="responseOutputMailandMessages" class="bg-white p-4 rounded border min-h-[100px]"></pre>
     </section>
 
     <!-- Messages Tools -->
     <section>
       <h2 class="text-xl font-semibold mb-4">Messages</h2>
       <div class="grid grid-cols-2 gap-4">
-        <button onclick="sendToOpenAI('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Messages</button>
-        <button onclick="sendToOpenAI('Provide a smart reply to this message:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
+        <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Messages</button>
+        <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
+      </div>
+    </section>
+
+    <!-- Mail Tools -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Messages</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Messages</button>
+        <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
       </div>
     </section>
 
