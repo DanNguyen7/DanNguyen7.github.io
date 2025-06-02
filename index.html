@@ -11,7 +11,7 @@
     function WritingTools(prompt) {
       const input = document.getElementById('userInputWritingTools').value;
       const fullPrompt = `${prompt}\n${input}`;
-      document.getElementById('responseOutput').textContent = 'Processing...';
+      document.getElementById('responseOutputWritingTools').textContent = 'Processing...';
       puter.ai.chat(fullPrompt)
               .then(response => {
                   document.getElementById('responseOutputWritingTools').textContent = response
