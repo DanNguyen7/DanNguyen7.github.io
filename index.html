@@ -54,7 +54,7 @@
     }
   </script> -->
 
-  <!-- ChatGPT -->
+  <!-- ChatGPT Script-->
   <script src="https://js.puter.com/v2/"></script>
   <script>
     function ChatGPT(prompt) {
@@ -66,6 +66,19 @@
               }); 
     }
   </script>
+  
+  <!-- Image Playground Script -->
+  <script src="https://js.puter.com/v2/"></script>
+    <script>
+      function ImagePlayground(prompt){
+        const input = document.getElementbyId('userInputImagePlayground').value;
+        const fullPrompt = `${prompt}\n${input}`;
+        puter.ai.txt2img(fullPrompt)
+            .then(imageElement => {
+                document.body.appendChild(imageElement);
+            });
+      }
+    </script>
   
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
@@ -177,6 +190,11 @@
     <!-- Image Playground -->
     <section>
       <h2 class="text-xl font-semibold mb-4">Image Playground</h2>
+      <textarea id="userInputImagePlayground" placeholder="Describe an image" class="w-full p-4 rounded border mb-4"></textarea>
+      <div class="text-sm text-gray-500 mb-2">Output:</div>
+    </section>
+
+    <section>
       <div class="grid grid-cols-3 gap-4">
         <button onclick="sendToOpenAI('Generate an animation style image of:')" class="bg-pink-500 text-white p-3 rounded-lg shadow">Animation</button>
         <button onclick="sendToOpenAI('Generate an illustration of:')" class="bg-pink-500 text-white p-3 rounded-lg shadow">Illustration</button>
