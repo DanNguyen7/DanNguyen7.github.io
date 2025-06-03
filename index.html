@@ -160,26 +160,24 @@
       <pre id="responseOutputMailandMessages" class="bg-white p-4 rounded border min-h-[100px]"></pre>
     </section>
       
-    <!-- Messages Tools -->
+    <!-- Messages and Mail Tools -->
     <section>
-      <details class="bg-green-100 p-3 rounded-lg shadow col-span-1">
-          <summary class="cursor-pointer font-semibold text-blue-700">Messages</summary>
-          <div class="mt-2 grid grid-cols-2 gap-2">
-            <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Messages</button>
-            <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
-          </div>
-      </details>
-    </section>
-
-    <!-- Mail Tools -->
-    <section>
-      <details class="bg-blue-100 p-3 rounded-lg shadow col-span-1">
-          <summary class="cursor-pointer font-semibold text-blue-700">Mail</summary>
-          <div class="mt-2 grid grid-cols-2 gap-2">
-            <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Summarise Mail</button>
-            <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
-          </div>
-      </details>
+      <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
+        <details class="bg-green-100 p-3 rounded-lg shadow col-span-1">
+            <summary class="cursor-pointer font-semibold text-green-700">Messages</summary>
+            <div class="mt-2 grid grid-cols-2 gap-2">
+              <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Summarise Messages</button>
+              <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-green-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
+            </div>
+        </details>
+        <details class="bg-blue-100 p-3 rounded-lg shadow col-span-1">
+            <summary class="cursor-pointer font-semibold text-blue-700">Mail</summary>
+            <div class="mt-2 grid grid-cols-2 gap-2">
+              <button onclick="MessagesandMail('Summarise this conversation:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Summarise Mail</button>
+              <button onclick="MessagesandMail('Provide a smart reply to this message:')" class="bg-blue-500 text-white p-3 rounded-lg shadow">Smart Reply</button>
+            </div>
+        </details>
+      </div>
     </section>
 
     <!-- ChatGPT -->
