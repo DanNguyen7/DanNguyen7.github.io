@@ -20,7 +20,8 @@
   <script>
     function WritingTools(prompt) {
       const input = document.getElementById('userInputWritingTools').value;
-      const fullPrompt = `${prompt}\n${input}`;
+      const instructions = 'Only return the output text and NOTHING else.'
+      const fullPrompt = `${prompt}\n${input}\n${instructions}`;
       document.getElementById('responseOutputWritingTools').textContent = 'Processing...';
       puter.ai.chat(fullPrompt)
               .then(response => {
